@@ -93,7 +93,11 @@
   .remaining-item.done { opacity:.38; text-decoration: line-through; }
   .letter-head { display:flex; align-items:center; justify-content:space-between; gap:16px; border-bottom:1px solid var(--line); padding-bottom:18px; margin-bottom:34px; }
   .pill { border:1px solid var(--line); color:var(--silver); padding:6px 10px; font-size:.65rem; letter-spacing:.15em; text-transform:uppercase; white-space:nowrap; }
-  .story-grid { display:grid; grid-template-columns: .9fr 1.1fr; gap:clamp(26px,6vw,70px); align-items:start; }
+  .story-grid { display:grid; grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr); gap:clamp(26px,6vw,70px); align-items:start; }
+  .story-grid:has(.photo-grid[hidden]) .memory-copy { grid-column:1 / -1; width:100%; max-width:760px; margin-inline:auto; }
+  .story-grid:has(.photo-grid[hidden]) .memory-copy .intro,
+  .story-grid:has(.photo-grid[hidden]) .memory-copy p { max-width:100%; }
+  .story-grid:has(.photo-grid[hidden]) .memory-copy h2 { max-width:15ch; }
   .photo-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
   .photo-placeholder {
     min-height: 180px; aspect-ratio: 4/5; background: linear-gradient(145deg,#343136,#211f23);
@@ -275,7 +279,7 @@
           <div class="album-slot"><span class="album-symbol">＋</span><strong>Promo 2025</strong></div>
           <div class="album-slot"><span class="album-symbol">＋</span><strong>Cocos 🥥🥥</strong></div>
           <div class="album-slot"><span class="album-symbol">＋</span><strong>La foto random</strong></div>
-          <div class="album-slot"><span class="album-symbol">＋</span><strong>Bariloche / vlog</strong></div>
+          <div class="album-slot"><span class="album-symbol">＋</span><strong>Una juntada más</strong></div>
           <div class="album-slot"><span class="album-symbol">＋</span><strong>Una juntada</strong></div>
           <div class="album-slot"><span class="album-symbol">＋</span><strong>La foto que siempre vuelve</strong></div>
           <div class="album-slot"><span class="album-symbol">＋</span><strong>Un recuerdo más</strong></div>
@@ -320,30 +324,30 @@
   const cards = [
     {
       id: 0, label: "Carta I", author: "Pablo", special: false,
-      title: "Las charlas que se van por las ramas",
-      intro: "Nos conocemos desde hace años y hay algo muy nuestro en que una conversación puede empezar por una tarea, seguir con cualquier pavada y terminar en una carcajada. Y al otro día, como si nada, seguimos hablando.",
-      quote: "“Mi tiempo vale oro, mirreyna 🙄💅🏻”",
-      body: "Este lugar es para todo eso que desde afuera capaz parece una charla más, pero nosotros sabemos que tiene historia. Los apodos que van y vienen, los mensajes a cualquier hora, las preguntas random y esa confianza de poder pasar de hablar en serio a decir una estupidez en dos segundos.",
+      title: "De hablar de cualquier cosa",
+      intro: "En estos últimos años hablamos de un poco de todo: cosas importantes, planes, fotos, dudas de último momento y conversaciones que se desvían en dos mensajes. Nunca hace falta inventar demasiado para que terminemos hablando un buen rato.",
+      quote: "“random mal” — porque a veces la mejor explicación es esa.",
+      body: "Me gusta que podamos mandarnos algo sin demasiado contexto y que la conversación siga igual. Hay confianza, hay lugar para hablar en serio y también para reírnos de cualquier cosa. No hace falta convertir cada recuerdo en una gran anécdota para que tenga valor.",
       letterTitle: "Agus, feliz cumple 💙",
-      letter: "Agusss:\n\nFeliz cumpleee. Me da gracia pensar que tenemos chats desde hace años y que si alguien los leyera sin contexto probablemente no entendería ni la mitad. Entre los “xd”, los “JAJAJA”, los apodos y las conversaciones que se van completamente de tema, fuimos armando algo muy nuestro.\n\nUna de mis cosas favoritas es que con vos no hace falta que todo sea solemne para que importe. Podemos estar hablando de cualquier pavada y, aun así, acompañarnos cuando hace falta. Y después volver a molestarnos como si nada, obviamente.\n\nOjalá tus 19 vengan con muchas cosas lindas, gente que te haga bien, planes que salgan mejor de lo esperado y un montón de motivos para reírte. Y que sigamos sumando chats que dentro de unos años nos den vergüenza ajena o nos hagan reír otra vez.\n\nTe quiero mucho, Agus. Feliz 19 💙\n\nPablo"
+      letter: "Agusss:\n\nFeliz cumpleee 💙. Me pone contento poder hacerte algo así para tus 19, porque después de tantos años de hablar casi todos los días ya hay un montón de cosas que compartimos y que no hace falta explicar demasiado.\n\nMe gusta que podamos hablar de lo que sea, mandarnos fotos, contarnos cosas y pasar de una conversación seria a reírnos por cualquier boludez. Y también que, cuando algo importa de verdad, podamos estar ahí.\n\nOjalá este año te traiga muchas cosas lindas, planes que sí se concreten, gente que te haga bien y un montón de momentos que después nos acordemos entre nosotros. Gracias por ser parte de tantos días comunes que, al final, también terminan siendo recuerdos.\n\nTe quiero mucho, Agus. Feliz 19 🫶🏻\n\nPablo"
     },
     {
       id: 1, label: "Carta II", author: "Gabi", special: false,
-      title: "El grupo y sus planes",
-      intro: "Entre la promo, el grupo de Cocos, las ideas de regalos, las fotos y los planes que aparecen de la nada, siempre terminamos armando alguna. A veces se concreta todo; otras veces queda en el chat… pero también cuenta.",
-      quote: "“Che, ¿y si hacemos…?” — frase que puede ser el comienzo de un plan o de veinte mensajes más.",
-      body: "Hay algo lindo en tener un grupo donde se puede organizar un regalo, mandar una foto fuera de contexto, hablar de jueguitos y terminar discutiendo otra cosa completamente distinta. No siempre hace falta una gran aventura: a veces alcanza con que estemos todos y pase algo que después se convierte en anécdota.",
+      title: "Las cosas que compartimos",
+      intro: "Entre las juntadas, las fotos que nos pasamos y los planes que se organizan en el grupo, siempre terminamos sumando alguna historia nueva. A veces el plan es simple; lo importante es que estemos y después quede algo para recordar.",
+      quote: "Las fotos del grupo: evidencia de que efectivamente nos juntamos.",
+      body: "Hay días en que el chat sirve para organizar algo y otros en los que nadie está hablando de lo mismo, pero igual termina siendo parte de la dinámica. Me gusta que haya confianza para proponer planes, compartir cosas y hacer lugar para más recuerdos.",
       letterTitle: "Para Agus, en sus 19",
-      letter: "Agus 💗:\n\nFeliz cumpleaños, Agus. Espero que hoy la pases hermoso y que este año te traiga un montón de momentos que quieras guardar.\n\nMe gusta que tengamos recuerdos que no son solamente las cosas grandes, sino también las juntadas, las fotos, los planes que salen de una conversación y las boludeces que terminan siendo chistes internos. Al final, son esas cosas las que hacen que un grupo sea nuestro y no uno cualquiera.\n\nOjalá sigamos sumando fotos para el álbum, planes para concretar y anécdotas que después contemos mil veces. Que tus 19 vengan con mucha risa, gente que te quiera bien y cosas que te entusiasmen de verdad.\n\nTe quiero mucho. Feliz cumpleee 💗\n\nGabi"
+      letter: "Agus 💗:\n\nFeliz cumpleee. Espero que hoy la pases hermoso y que te sientas muy querida, porque te lo merecés.\n\nMe alegra tenerte en el grupo y que sigamos compartiendo juntadas, fotos y todos esos momentos que después vuelven a aparecer cuando alguien manda algo al chat. No hace falta que pase algo enorme cada vez: las cosas simples también terminan siendo las que más recordamos.\n\nOjalá tus 19 vengan con planes lindos, muchas risas, salidas que salgan bien y gente con la que puedas ser vos misma. Y que sigamos encontrando excusas para juntarnos y sumar fotos nuevas.\n\nTe quiero mucho. Feliz cumple, Agus 💗\n\nGabi"
     },
     {
       id: 2, label: "Carta III", author: "Álvaro", special: false,
-      title: "Un recuerdo tras otro",
-      intro: "Hay fotos que necesitan explicación y otras que, por favor, es mejor que nunca tengan contexto. Entre Bariloche, el vlog pendiente y todo lo que fue pasando con el grupo, material para acordarnos no falta.",
-      quote: "“Lo que pasa en Bariloche queda en Bariloche”… aunque después alguien lo mencione en el chat igual.",
-      body: "Esta carta es para los recuerdos que se van acumulando sin que nos demos cuenta: un viaje, una foto random, una charla eterna, una idea de madrugada o un plan que empieza con un “che”. No hace falta que todo salga perfecto para que después sea algo que nos dé risa recordar.",
+      title: "Que sigan las juntadas",
+      intro: "De las cosas que aparecen en el grupo, muchas terminan en una juntada, una foto o un plan que alguien propone a último momento. Y aunque no siempre salga todo como se organizó, al menos siempre hay algo para comentar después.",
+      quote: "“Al final, ¿dónde es hoy la juntada?” — pregunta que nunca falta.",
+      body: "Me gusta que podamos seguir sumando planes y recuerdos sin tener que hacer algo enorme. A veces alcanza con juntarnos un rato, jugar algo, charlar o sacar fotos que después reaparecen en el chat. Eso también es parte de la historia del grupo.",
       letterTitle: "Feliz cumpleaños, Agus",
-      letter: "Agus, feliz cumple 🥳:\n\nEspero que tengas un día buenísimo y que los 19 arranquen con todo lo que te haga feliz.\n\nDe todas las cosas que terminamos compartiendo, me gusta que siempre haya alguna anécdota nueva para sumar. A veces son recuerdos enormes y otras veces es una pavada que alguien manda al grupo y termina dando vueltas durante días. Y después están las fotos que sirven como prueba de que sí, efectivamente, eso pasó.\n\nOjalá este año venga con más salidas, más fotos, más planes que se concreten y muchos momentos de esos que después se convierten en historia del grupo. Y que nunca falte alguien que diga “hay que hacer el vlog” para que nos acordemos de que todavía está pendiente.\n\nQue la pases hermoso, Agus. Feliz 19 💙\n\nÁlvaro"
+      letter: "Agus, feliz cumple 🥳:\n\nEspero que tengas un día buenísimo y que disfrutes mucho tus 19.\n\nEstá bueno tener un grupo con el que siempre puede salir algún plan, aunque se organice medio sobre la marcha. Entre las juntadas, las fotos y las conversaciones del chat, vamos acumulando recuerdos sin darnos mucha cuenta.\n\nOjalá este año tengas muchas cosas para festejar, planes que salgan bien, más días de esos en los que nos podemos juntar y un montón de momentos que después nos hagan reír cuando vuelvan a aparecer en las fotos.\n\nQue la pases hermoso, Agus. Feliz 19 💙\n\nÁlvaro"
     },
     {
       id: 3, label: "Carta IV", author: "La persona especial", special: true,
@@ -357,12 +361,12 @@
   ];
 
   const memories = [
-    "“Mi tiempo vale oro, mirreyna 🙄💅🏻✨” — una forma bastante Agus de cerrar una conversación.",
-    "Los apodos cambian, las conversaciones se van por las ramas y el chat sigue sumando años.",
-    "Robloxito también forma parte del archivo histórico del grupo.",
-    "El vlog de Bariloche sigue siendo una de esas cosas que estaría bueno terminar algún día.",
-    "El grupo de Cocos 🥥🥥: nombre serio para conversaciones que de serias tienen poco.",
-    "Hay fotos que cuentan la historia y otras que hacen que sea obligatorio preguntar: “¿qué estaba pasando acá?”."
+    "Las juntadas que se organizan en el grupo y terminan sumando otra historia.",
+    "Las fotos que nos pasamos y que después vuelven a aparecer en el chat.",
+    "Los planes que se arman entre mensajes y terminan siendo un buen recuerdo.",
+    "Las conversaciones que empiezan con una cosa y en dos minutos ya están hablando de otra.",
+    "Las partidas y los juegos que aparecen en las charlas del grupo.",
+    "Los momentos simples que después dan ganas de volver a mirar en fotos."
   ];
 
   let currentCard = null;
@@ -459,10 +463,10 @@
     } else {
       $("authorName").textContent = currentCard.author;
       $("authorMessage").textContent = currentCard.id === 0
-        ? "La persona que lleva años en este chat y conoce perfectamente el poder de un “xd”."
+        ? "La persona que lleva años compartiendo charlas, fotos y un montón de momentos con vos."
         : currentCard.id === 1
-          ? "La que suma ideas, recuerdos y planes al archivo compartido."
-          : "El que también tiene historias para sumar al álbum y al vlog pendiente.";
+          ? "La que suma juntadas, fotos y recuerdos a la historia del grupo."
+          : "El que también suma planes y anécdotas a la historia compartida.";
       $("authorReveal").hidden = false;
       $("authorReveal").scrollIntoView({ behavior: "smooth", block: "center" });
     }
