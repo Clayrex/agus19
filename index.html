@@ -106,6 +106,15 @@
   }
   .photo-placeholder:nth-child(2) { margin-top:32px; background:linear-gradient(145deg,#344b67,#202b38); }
   .photo-placeholder span { display:block; font-family:var(--serif); font-size:2rem; color:var(--ivory); margin-bottom:10px; }
+  /* Fotos: dejá los archivos dentro de la carpeta "fotos" junto al HTML. */
+  .photo-placeholder { position:relative; overflow:hidden; }
+  .photo-placeholder .slot-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; z-index:1; }
+  .photo-placeholder .slot-hint { position:relative; z-index:0; }
+  .album-slot { position:relative; overflow:hidden; }
+  .album-slot .slot-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:0; }
+  .album-slot strong, .album-slot .album-symbol { position:relative; z-index:1; }
+  .album-slot strong { background:linear-gradient(transparent,rgba(16,25,35,.86)); padding:8px 4px 2px; }
+
   .memory-copy { color:#d0c9c1; }
   .memory-copy p { max-width:580px; }
   .quote { font:italic 1.3rem/1.4 var(--serif); color:var(--ivory); border-left:2px solid var(--wine-light); padding:4px 0 4px 18px; margin:26px 0; }
@@ -213,8 +222,15 @@
       </div>
       <div class="story-grid">
         <div class="photo-grid" id="photoGrid">
-          <div class="photo-placeholder"><span>＋</span>Una foto de ustedes</div>
-          <div class="photo-placeholder"><span>＋</span>Un recuerdo que merezca quedar acá</div>
+          <!-- FOTOS DE LAS CARTAS: guardá las imágenes dentro de fotos/ con estos nombres. -->
+          <div class="photo-placeholder">
+            <img class="slot-image" src="fotos/carta-01-foto-1.jpg" alt="Foto para la carta I" onerror="this.hidden=true">
+            <span class="slot-hint">＋</span><div class="slot-hint">Poné acá una foto</div>
+          </div>
+          <div class="photo-placeholder">
+            <img class="slot-image" src="fotos/carta-01-foto-2.jpg" alt="Otra foto para la carta I" onerror="this.hidden=true">
+            <span class="slot-hint">＋</span><div class="slot-hint">Poné acá otra foto</div>
+          </div>
         </div>
         <div class="memory-copy">
           <div class="eyebrow">Recuerdos / momentos / nosotros</div>
@@ -251,8 +267,15 @@
         <div class="author-name" id="specialAuthor">La persona detrás de la carta</div>
         <p id="specialRevealText" style="color:#d0c9c1">Ahora sí: llegó el momento de ponerle nombre y cara a estas palabras.</p>
         <div class="special-photos" id="specialPhotos">
-          <div class="photo-placeholder"><span>＋</span>Una foto de ustedes</div>
-          <div class="photo-placeholder"><span>＋</span>Otro recuerdo juntos</div>
+          <!-- Estas fotos solo aparecen en la pantalla de revelación de la carta IV. -->
+          <div class="photo-placeholder">
+            <img class="slot-image" src="fotos/especial-foto-1.png" alt="Foto de Agus con la persona especial" onerror="this.hidden=true">
+            <span class="slot-hint">＋</span><div class="slot-hint">Foto para la revelación</div>
+          </div>
+          <div class="photo-placeholder">
+            <img class="slot-image" src="fotos/especial-foto-2.png" alt="Otro recuerdo de Agus con la persona especial" onerror="this.hidden=true">
+            <span class="slot-hint">＋</span><div class="slot-hint">Otro recuerdo</div>
+          </div>
         </div>
         <button class="btn primary" onclick="afterSpecialReveal()">Continuar ↗</button>
       </div>
@@ -264,28 +287,29 @@
       <div class="eyebrow">Capítulo final / Para vos</div>
       <h2 id="finalTitle">Cuatro historias.<br><span style="color:var(--wine-light)">Una Agus.</span></h2>
       <p class="intro">Cada persona tiene una versión distinta de vos en su vida. Todas merecían un lugar en este regalo.</p>
-      <p class="intro">Si llegaste hasta acá, ya abriste las cuatro. Y por si querés volver a alguna (o releerla después), las dejamos todas a mano.</p>
+      <p class="intro">Si llegaste hasta acá, ya abriste las cuatro. Y por si querés volver a alguna (o releerla después), te las dejamos todas a mano.</p>
       <div class="letter-shortcuts" id="letterShortcuts">
-        <button class="letter-shortcut" onclick="revisitCard(0)"><span>CARTA I</span><strong>Las charlas que se van por las ramas</strong><span>Volver a leer ↗</span></button>
-        <button class="letter-shortcut" onclick="revisitCard(1)"><span>CARTA II</span><strong>El grupo y sus planes</strong><span>Volver a leer ↗</span></button>
-        <button class="letter-shortcut" onclick="revisitCard(2)"><span>CARTA III</span><strong>Un recuerdo tras otro</strong><span>Volver a leer ↗</span></button>
-        <button class="letter-shortcut" onclick="revisitCard(3)"><span>CARTA IV</span><strong>La sorpresa que faltaba</strong><span>Volver a leer ↗</span></button>
+        <button class="letter-shortcut" onclick="revisitCard(0)"><span>CARTA I</span><strong>Pablito</strong><span>Volver a leer ↗</span></button>
+        <button class="letter-shortcut" onclick="revisitCard(1)"><span>CARTA II</span><strong>Gabo</strong><span>Volver a leer ↗</span></button>
+        <button class="letter-shortcut" onclick="revisitCard(2)"><span>CARTA III</span><strong>Alvaro</strong><span>Volver a leer ↗</span></button>
+        <button class="letter-shortcut" onclick="revisitCard(3)"><span>CARTA IV</span><strong>El especial</strong><span>Volver a leer ↗</span></button>
       </div>
       <div style="margin-top:50px">
-        <div class="eyebrow">El álbum de ustedes</div>
+        <div class="eyebrow">Nuestro álbum</div>
         <h2 style="font-size:clamp(2.3rem,6vw,4rem);margin:14px 0">Fotos que cuentan<br><span style="color:var(--wine-light)">la historia completa.</span></h2>
-        <p class="intro" style="font-size:1rem">Dejé lugar para las fotos reales: las de la promo, las random, las que dan risa y las que no necesitan explicación. Cuando sumemos las imágenes, este va a ser el álbum para volver a mirar.</p>
+        <p class="intro" style="font-size:1rem">Te dejamos estas fotos para que puedas revivir algunos de los mejores momentos juntos.</p>
         <div class="album-grid" id="albumGrid">
-          <div class="album-slot"><span class="album-symbol">＋</span><strong>Promo 2025</strong></div>
-          <div class="album-slot"><span class="album-symbol">＋</span><strong>Cocos 🥥🥥</strong></div>
-          <div class="album-slot"><span class="album-symbol">＋</span><strong>La foto random</strong></div>
-          <div class="album-slot"><span class="album-symbol">＋</span><strong>Una juntada más</strong></div>
-          <div class="album-slot"><span class="album-symbol">＋</span><strong>Una juntada</strong></div>
-          <div class="album-slot"><span class="album-symbol">＋</span><strong>La foto que siempre vuelve</strong></div>
-          <div class="album-slot"><span class="album-symbol">＋</span><strong>Un recuerdo más</strong></div>
-          <div class="album-slot"><span class="album-symbol">＋</span><strong>Para no olvidarnos</strong></div>
+          <!-- ÁLBUM: guardá tus imágenes dentro de fotos/ usando estos nombres. -->
+          <div class="album-slot"><img class="slot-image" src="fotos/album-01.jpg" alt="Foto del álbum 1" onerror="this.hidden=true"><span class="album-symbol">＋</span><strong>Promo 2025</strong></div>
+          <div class="album-slot"><img class="slot-image" src="fotos/album-02.png" alt="Foto del álbum 2" onerror="this.hidden=true"><span class="album-symbol">＋</span><strong>Cocos 🥥🥥</strong></div>
+          <div class="album-slot"><img class="slot-image" src="fotos/album-03.JPG" alt="Foto del álbum 3" onerror="this.hidden=true"><span class="album-symbol">＋</span><strong>Una foto random</strong></div>
+          <div class="album-slot"><img class="slot-image" src="fotos/album-04.JPG" alt="Foto del álbum 4" onerror="this.hidden=true"><span class="album-symbol">＋</span><strong>Una juntada</strong></div>
+          <div class="album-slot"><img class="slot-image" src="fotos/album-05.jpg" alt="Foto del álbum 5" onerror="this.hidden=true"><span class="album-symbol">＋</span><strong>Foto fachera</strong></div>
+          <div class="album-slot"><img class="slot-image" src="fotos/album-06.jpg" alt="Foto del álbum 6" onerror="this.hidden=true"><span class="album-symbol">＋</span><strong>Otra foto random</strong></div>
+          <div class="album-slot"><img class="slot-image" src="fotos/album-07.jpg" alt="Foto del álbum 7" onerror="this.hidden=true"><span class="album-symbol">＋</span><strong>Un recuerdo más</strong></div>
+          <div class="album-slot"><img class="slot-image" src="fotos/album-08.jpg" alt="Foto del álbum 8" onerror="this.hidden=true"><span class="album-symbol">＋</span><strong>Para no olvidarnos</strong></div>
         </div>
-        <div class="memory-pick"><div class="eyebrow">Cápsula de recuerdos</div><button class="btn" onclick="randomMemory()" style="margin-top:12px">Sacame un recuerdo al azar ↗</button><p id="randomMemoryText">Hay conversaciones que empiezan con una pregunta normal y terminan en cualquier cosa. Por suerte, las nuestras tienen archivo.</p></div>
+        <div class="memory-pick"><div class="eyebrow">Cápsula de recuerdos</div><button class="btn" onclick="randomMemory()" style="margin-top:12px">Sacame un recuerdo al azar ↗</button><p id="randomMemoryText">Hay conversaciones que empiezan con una pregunta normal y terminan en cualquier cosa. Por suerte, nos acordamos algunas.</p></div>
       </div>
       <div class="letter-card">
         <div class="eyebrow">De parte de los cuatro</div>
@@ -294,26 +318,26 @@
       </div>
 
       <div style="margin-top:54px">
-        <div class="eyebrow">Un extra para tu próxima partida</div>
+        <div class="eyebrow">Te tenemos otra sorpresa</div>
         <h2 style="font-size:clamp(2.3rem,6vw,4rem);margin:14px 0">Un par de regalitos<br><span style="color:var(--wine-light)">para vos.</span></h2>
-        <p class="intro" style="font-size:1rem">Porque también se vale festejar con jueguitos. Hay una sorpresa gamer para vos; los códigos te los pasamos por privado, así no quedan publicados acá.</p>
+        <p class="intro" style="font-size:1rem">Avisanos y te pasamos los códigos por privado y asi los canjeas</p>
         <div class="final-grid">
           <div class="final-tile">
             <div class="tile-number">01</div>
             <h3>Steam</h3>
-            <p style="color:var(--muted)">Una gift card de USD 10 para sumar algo a tu biblioteca o elegir tu próximo juego.</p>
-            <span class="pill">Regalo previsto</span>
+            <p style="color:var(--muted)">Una gift card de USD 15 para sumar algo a tu biblioteca o elegir tu próximo juego.</p>
+            <span class="pill"><a href="https://wa.me/+543517374820?text=Pasame%20el%20codigo%20de%20Steam%20pete" target="_blank" style="color:white; text-decoration: none;">Canjea tu regalo</a></span>
           </div>
           <div class="final-tile">
             <div class="tile-number">02</div>
             <h3>Roblox</h3>
-            <p style="color:var(--muted)">La idea es que sean 840 Robux. Estamos juntando los puntos que faltan para poder conseguirlos.</p>
-            <span class="pill">En preparación</span>
+            <p style="color:var(--muted)">Una gift card de USD 5 en robux.</p>
+            <span class="pill"><a href="https://wa.me/+543517374820?text=Pasame%20el%20codigo%20de%20Roblox%20pete" target="_blank" style="color:white; text-decoration: none;">Canjea tu regalo</a></span>
           </div>
         </div>
-        <div class="quote">Los códigos no van publicados acá: te los pasamos por privado cuando te demos el regalo. ♡</div>
+        <div class="quote">Esperamos te gusten ♡</div>
       </div>
-      <p class="footer-note">Hecho entre amigos, con nuestros recuerdos y nuestras formas medio caóticas de quererte. · Los códigos de los regalos digitales van por privado.</p>
+      <p class="footer-note">Hecho entre amigos, con nuestros recuerdos y nuestras formas medio caóticas de quererte.</p>
       <div class="button-row"><button class="btn" onclick="showScreen('roulette')">Volver a las cartas</button><button class="btn primary" onclick="restartExperience()">Volver al inicio ↺</button></div>
     </div>
   </section>
@@ -324,49 +348,52 @@
   const cards = [
     {
       id: 0, label: "Carta I", author: "Pablo", special: false,
-      title: "De hablar de cualquier cosa",
-      intro: "En estos últimos años hablamos de un poco de todo: cosas importantes, planes, fotos, dudas de último momento y conversaciones que se desvían en dos mensajes. Nunca hace falta inventar demasiado para que terminemos hablando un buen rato.",
-      quote: "“random mal” — porque a veces la mejor explicación es esa.",
+      title: "Pablo Camacho",
+      intro: "En estos últimos años hablamos de un poco de todo: cosas importantes, planes, fotos, sobre los especiales💜 JASJASJ, dudas, entre muchas otras más. Nunca hace falta inventar demasiado para que terminemos hablando un buen rato.",
+      quote: "Deja de migajear locona 💜",
       body: "Me gusta que podamos mandarnos algo sin demasiado contexto y que la conversación siga igual. Hay confianza, hay lugar para hablar en serio y también para reírnos de cualquier cosa. No hace falta convertir cada recuerdo en una gran anécdota para que tenga valor.",
-      letterTitle: "Agus, feliz cumple 💙",
-      letter: "Agusss:\n\nFeliz cumpleee 💙. Me pone contento poder hacerte algo así para tus 19, porque después de tantos años de hablar casi todos los días ya hay un montón de cosas que compartimos y que no hace falta explicar demasiado.\n\nMe gusta que podamos hablar de lo que sea, mandarnos fotos, contarnos cosas y pasar de una conversación seria a reírnos por cualquier boludez. Y también que, cuando algo importa de verdad, podamos estar ahí.\n\nOjalá este año te traiga muchas cosas lindas, planes que sí se concreten, gente que te haga bien y un montón de momentos que después nos acordemos entre nosotros. Gracias por ser parte de tantos días comunes que, al final, también terminan siendo recuerdos.\n\nTe quiero mucho, Agus. Feliz 19 🫶🏻\n\nPablo"
+      letterTitle: "Feliz cumple petera 🤍",
+      letter: "Ya llegaron los 19. Ya estás re vieja, andá preparándote psicológicamente para los 20 💀. JSJAS la re tiraba abajo.\nFuera de joda, espero que hoy la pases hermosooo, que disfrutes muchísimo tu día y que estés rodeada de toda la gente que te quiere, porque te merecés eso y muchísimo más. Ojalá este nuevo año te traiga un montón de cosas lindas, que puedas cumplir todo lo que te propongas y que te salgan bien esas cosas que tanto querés. Y si alguna no sale como esperabas, buenoo desp se solucionan solas dea jasjas, tampoco hay que hacerse tanto drama.\nLa verdad es que me pone muy feliz haberte conocido y tenerte en mi vida. A veces pienso en todos los momentos que compartimos y me doy cuenta de que, sin necesidad de hacer siempre algo increíble, terminamos teniendo un montón de recuerdos que me encanta guardar. Desde las juntadas y las fotos tranquis, cuando salimos a rosi 🌹, las pocas veces q jugamos AJSJAS. Hay momentos que capaz en el momento son una boludez, pero después te acordás y te volvés a reír. Para mí, esas son de las mejores cosas: poder compartir pavadas, cagarnos de risa y sentir que no hace falta organizar el mejor plan del mundo para pasarla bien. Buenoo yo creo que todos deberian tener una agus en sus vidas, sos como esas personas que llegan una vez en la vida y están para quedarse, sinceramente no se como hubiese sido mi vida sin vos 🥲🫶🏻.\nTambién quiero que sepas que te amo muchísimo y que valoro un montón la persona que sos. Sos alguien con quien me gusta compartir tiempo, hablar y hacer recuerdos, y espero que sigamos teniendo muchísimos más. Todavía nos quedan un montón de cosas por hacer.\nEspero que nunca te falten motivos para reírte, gente que te haga bien y personas con las que puedas ser vos misma sin tener que andar fingiendo nada. Que sigas siendo esa persona copada, divertida e inteligente que sos, no seas migajera JSAJA, naa pero no dejes que ningun chavon te saque tu brillo, porque sos alta mina como para que andes bajoneada por pelotudos, y que nunca dudes de todo lo bueno que tenés para dar.\nOjalá pudiera hacer que este año sea uno de esos que después mirás para atrás y decís qué lindo año de mierda, cuánto me reí. Y que cuando lleguen tus próximos cumpleaños tengamos todavía más historias para recordar.\nMe encantaria hacer esta carta mucho mas larga y sentimental pero ya toy quemado AJAJS, naa posta que no encuentro bien las palabras para expresar cuanto te amo hdp 😭. Sos la mejor amiga que todos quisieran tener. Sos mi hermanita del alma.\nTe amo una banda, agusususu. Gracias por los momentos compartidos, por las risas y por ser parte de tantos recuerdos lindos. Disfrutá muchísimo tus 19, comé rico, pasala hermoso y dejate querer, que hoy es tu día. (uh eso sono re chatgpt JASJASJ)\nFeliz cumpleee, mi petera favoritaa 🥹💗\nY acordate de disfrutar tus últimos momentos siendo una adolescente, porque el año que viene ya te toca jubilarte. Pero buenooo disfruta el presente y no penses tanto en el futuro pq todavia nos queda una gran vida por vivir, al menos q t mate el nico antes de un paro cardiaco 💜.\n\nTe quiero muchooooo, loconaa. Feliz cumpleee. 🫶🏻"
     },
     {
       id: 1, label: "Carta II", author: "Gabi", special: false,
-      title: "Las cosas que compartimos",
-      intro: "Entre las juntadas, las fotos que nos pasamos y los planes que se organizan en el grupo, siempre terminamos sumando alguna historia nueva. A veces el plan es simple; lo importante es que estemos y después quede algo para recordar.",
-      quote: "Las fotos del grupo: evidencia de que efectivamente nos juntamos.",
-      body: "Hay días en que el chat sirve para organizar algo y otros en los que nadie está hablando de lo mismo, pero igual termina siendo parte de la dinámica. Me gusta que haya confianza para proponer planes, compartir cosas y hacer lugar para más recuerdos.",
+      title: "Gabriel Cierra",
+      intro: "Entre las juntadas, las fotos que nos pasamos y los planes que se organizan en el grupo, siempre terminamos sumando alguna historia nueva. A veces el plan es simple pero lo importante es que estemos y después quede algo para recordar.",
+      quote: "Preparate para los 20 loca",
+      body: "Al final, entre las juntadas, las charlas y las boludeces que hacemos, terminamos juntando un montón de recuerdos. Me alegra haberte conocido y que hayamos compartido tantos momentos.",
       letterTitle: "Para Agus, en sus 19",
-      letter: "Agus 💗:\n\nFeliz cumpleee. Espero que hoy la pases hermoso y que te sientas muy querida, porque te lo merecés.\n\nMe alegra tenerte en el grupo y que sigamos compartiendo juntadas, fotos y todos esos momentos que después vuelven a aparecer cuando alguien manda algo al chat. No hace falta que pase algo enorme cada vez: las cosas simples también terminan siendo las que más recordamos.\n\nOjalá tus 19 vengan con planes lindos, muchas risas, salidas que salgan bien y gente con la que puedas ser vos misma. Y que sigamos encontrando excusas para juntarnos y sumar fotos nuevas.\n\nTe quiero mucho. Feliz cumple, Agus 💗\n\nGabi"
+      letter: "Feliz cumpleaños, agus\nFeliz cumple, boludaaa  Ya 19 años, estás re vieja loca\nBueno, fuera de joda, espero que hoy la pases re lindo, que disfrutes un montón tu día y que estés rodeada de gente que te quiera. Te deseo lo mejor para esta nueva etapa, que se te den las cosas que querés y que puedas cumplir todas tus metas y objetivos.\nSos una persona re copada, inteligente, divertida y leal, y me alegra haberte conocido. Espero que sigamos compartiendo un montón de momentos, como cuando vimos a pablo saltar de susto o cuando filosofamos de la existencia.\nOjalá este año venga lleno de cosas buenas para vos y que tengas muchos motivos para sonreír. Disfrutá tus 19, que después llegan los 20 y ahí sera depresion total.\nFeliz cumple, agustina delfina aqua fina. Pasala hermoso y disfrutá mucho tu día. Pq sera el ultimo sea re amenaza y bueno eso loca y recorda a gabi comprar caldo porfi"
     },
     {
       id: 2, label: "Carta III", author: "Álvaro", special: false,
-      title: "Que sigan las juntadas",
+      title: "Alvaro Asensio",
       intro: "De las cosas que aparecen en el grupo, muchas terminan en una juntada, una foto o un plan que alguien propone a último momento. Y aunque no siempre salga todo como se organizó, al menos siempre hay algo para comentar después.",
       quote: "“Al final, ¿dónde es hoy la juntada?” — pregunta que nunca falta.",
-      body: "Me gusta que podamos seguir sumando planes y recuerdos sin tener que hacer algo enorme. A veces alcanza con juntarnos un rato, jugar algo, charlar o sacar fotos que después reaparecen en el chat. Eso también es parte de la historia del grupo.",
+      body: "Me gusta que podamos seguir sumando planes y recuerdos sin tener que hacer algo enorme. A veces alcanza con juntarnos un rato, charlar o sacar fotos que después reaparecen en el chat. Eso también es parte de nosotros.",
       letterTitle: "Feliz cumpleaños, Agus",
       letter: "Agus, feliz cumple 🥳:\n\nEspero que tengas un día buenísimo y que disfrutes mucho tus 19.\n\nEstá bueno tener un grupo con el que siempre puede salir algún plan, aunque se organice medio sobre la marcha. Entre las juntadas, las fotos y las conversaciones del chat, vamos acumulando recuerdos sin darnos mucha cuenta.\n\nOjalá este año tengas muchas cosas para festejar, planes que salgan bien, más días de esos en los que nos podemos juntar y un montón de momentos que después nos hagan reír cuando vuelvan a aparecer en las fotos.\n\nQue la pases hermoso, Agus. Feliz 19 💙\n\nÁlvaro"
     },
     {
       id: 3, label: "Carta IV", author: "La persona especial", special: true,
-      title: "Una historia que no se cuenta igual",
+      title: "Una historia que comenzo \"agarrando la pala\"",
       intro: "Esta carta va por otro lado. No vas a encontrar fotos ni pistas obvias acá: primero leé las palabras, y al final vas a descubrir quién está detrás.",
-      quote: "Hay personas que se ganan un lugar propio, incluso cuando la historia se va escribiendo de a poco.",
+      quote: "Quién diría que algo que empezó así iba a terminar significando tanto.",
       body: "No hace falta adelantar la sorpresa. Esta parte está hecha para que puedas leerla tranquila y recién después unir las piezas. La identidad, las fotos y el último detalle esperan al final.",
       letterTitle: "Agus, quería dejarte estas palabras",
-      letter: "Agus:\n\nFeliz cumpleaños. Quería que tuvieras un lugar en esta sorpresa porque sos alguien importante para mí y me hacía ilusión que también hubiera unas palabras mías entre todas las de la gente que te quiere.\n\nOjalá estos 19 te traigan momentos lindos, tranquilidad cuando la necesites, muchas razones para reírte y personas con las que puedas ser vos sin pensar demasiado. Que sigas encontrando cosas que te entusiasmen y que tengas cerca a quienes te hacen bien.\n\nNo te voy a dejar todas las pistas acá porque parte de la gracia es que descubras el final. Solo quería que supieras que me alegra formar parte de tu historia y poder celebrar un poquito este día con vos.\n\nFeliz cumple, Agus 💙\n\nCon cariño,\nAlguien que quería estar en esta sorpresa"
+      letter: "¡Feliz cumpleaños Tontoo(Agus)! jajajaja,espero que pases un hermoso dia, sos una persona increible que siempre admire, que ojala podamos seguir compartiendo tiempo juntos llamadas mas que nada jaja y poder conocerte algun dia,nada que cumplas todo eso que tanto anhelas seas feliz siempre ante todo lo que hagass,te amo y quiero muchisimoo. (y que te den paciencia tambienn jajajaj)"
     }
   ];
 
   const memories = [
-    "Las juntadas que se organizan en el grupo y terminan sumando otra historia.",
-    "Las fotos que nos pasamos y que después vuelven a aparecer en el chat.",
-    "Los planes que se arman entre mensajes y terminan siendo un buen recuerdo.",
-    "Las conversaciones que empiezan con una cosa y en dos minutos ya están hablando de otra.",
-    "Las partidas y los juegos que aparecen en las charlas del grupo.",
-    "Los momentos simples que después dan ganas de volver a mirar en fotos."
+    "Las juntadas que nunca pasan",
+    "Cuando gabi se cayó en el poli",
+    "Cuando pablo salto en el cine del susto",
+    "Las charlas filosoficas con gabi a las 2am",
+    "Las partidas del repo que siempre terminamos carreando a gabi 💜",
+    "“Bariloche” 🥹",
+    "Las salidas a rosi 🌹",
+    "Cuando alvaro se puso en pedo en casa de valen y tuvimos que limpiar todo",
+    "Vicky moment"
   ];
 
   let currentCard = null;
@@ -438,9 +465,16 @@
     // La carta sorpresa no muestra fotos hasta la pantalla de revelación.
     $("photoGrid").hidden = card.special;
     if (!card.special) {
+      const n = String(card.id + 1).padStart(2, "0");
       $("photoGrid").innerHTML = `
-        <div class="photo-placeholder"><span>＋</span>Una foto de ustedes</div>
-        <div class="photo-placeholder"><span>＋</span>Un recuerdo que merezca quedar acá</div>`;
+        <div class="photo-placeholder">
+          <img class="slot-image" src="fotos/carta-${n}-foto-1.jpg" alt="Foto para ${card.label}" onerror="this.hidden=true">
+          <span class="slot-hint">＋</span><div class="slot-hint">Foto para ${card.label}</div>
+        </div>
+        <div class="photo-placeholder">
+          <img class="slot-image" src="fotos/carta-${n}-foto-2.jpg" alt="Otro recuerdo para ${card.label}" onerror="this.hidden=true">
+          <span class="slot-hint">＋</span><div class="slot-hint">Otro recuerdo</div>
+        </div>`;
     }
     $("backButton").textContent = revisitingFinal ? "Volver al álbum" : "Volver a la ruleta";
     $("backButton").setAttribute("onclick", revisitingFinal ? "backToFinal()" : "backToWheel()");
@@ -457,16 +491,16 @@
     completed.add(currentCard.id);
     $("letterCard").hidden = true;
     if (currentCard.special) {
-      $("specialAuthor").textContent = "[Nombre de la persona especial]";
-      $("specialRevealText").textContent = "Ahora sí: acá va el nombre y, cuando sumemos las fotos, las imágenes que faltaban para completar la sorpresa.";
+      $("specialAuthor").textContent = "Tonta (Nico)";
+      $("specialRevealText").textContent = "De misiones pa cordoba";
       showScreen("specialReveal");
     } else {
       $("authorName").textContent = currentCard.author;
       $("authorMessage").textContent = currentCard.id === 0
-        ? "La persona que lleva años compartiendo charlas, fotos y un montón de momentos con vos."
+        ? "El mas capito"
         : currentCard.id === 1
-          ? "La que suma juntadas, fotos y recuerdos a la historia del grupo."
-          : "El que también suma planes y anécdotas a la historia compartida.";
+          ? "El mas fachero del grupo"
+          : "El que que no supera nunca";
       $("authorReveal").hidden = false;
       $("authorReveal").scrollIntoView({ behavior: "smooth", block: "center" });
     }
